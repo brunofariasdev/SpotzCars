@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="home-carousel">
+
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    
   },
 };
 </script>
+
+<style scoped>
+.home{
+  height: 100vh;
+}
+.home-carousel{
+  height: 100vh;
+  background-size: cover;
+  background-image: url('https://3.bp.blogspot.com/-MtkFHTYS8uE/VJembNWD8jI/AAAAAAAB96I/Qn95UjLHCVs/s1600/VW-Golf-2010-Prata%2B(4).jpg');
+}
+</style>
