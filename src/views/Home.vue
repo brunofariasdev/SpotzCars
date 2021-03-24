@@ -1,34 +1,38 @@
-<template>
+<template> 
   <div class="home">
     <div class="home-carousel" :style="`background-image:url(${imgscarousel[`${img}`]})`">
+      <div class="info-home">
+        <h2 id="title">Encontre o carro ideal e <br> compre agora mesmo!</h2>
+        <p class="subtitle">Ornare malesuada praesent aliquam varius mollis feugiat faucibus tristique ac aliquam, integer aenean commodo donec neque proin lacinia phasellus eget dui,<br> pulvinar auctor sapien nisl pretium curabitur eros donec per. </p>
+      </div>
     </div>
-  </div>
+  </div>  
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "Home",
   data(){
     return {
-      imgscarousel: [
+      imgscarousel:[
         'https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80',
         'https://revistacarro.com.br/wp-content/uploads/2019/09/Ferrari-F8-Spider_3-1024x614.jpg','https://carrosecarros.com.br/upload/noticias/imagens/bYNMbV6kdb.jpg','https://cdn.motor1.com/images/mgl/rv6v6/s1/volkswagen-golf-8-gti-clubsport-2021.jpg'
       ],
-      img: 0
+      img: 0, 
+      cars: []
     }
   },
-  components: {
-    
-  },
-  computed:{
-    
-    
-  }
+  created(){
+    setInterval(() => {
+      if(this.img < 3){
+        this.img++;
+      }else{
+        this.img = 0;
+      }
+    }, 4000)
+  } 
 };
 </script>
-
 <style scoped>
 /*------------HOME-MAIN-------------*/
 .home{
@@ -41,8 +45,11 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
-.home-carousel:after {
+.home-carousel:after{
     content: '\A';
     z-index: 2;
     position: absolute;
@@ -51,4 +58,33 @@ export default {
     background:rgba(0, 0, 0, 0.349);
     opacity: 1;
 }
+#title{
+  position: absolute;
+  z-index: 3 !important;
+  color: white;
+  font-size: 1.4rem;
+  letter-spacing: .1rem;
+  text-align: start;
+  font-weight: bold;
+}
+.subtitle{
+  position: absolute;
+  z-index: 3 !important;
+  color: white;
+  font-size: .8rem;
+  margin-top: 10rem;
+  letter-spacing: .1rem;
+  text-align: center;
+  font-weight: 400;
+}
+.info-home{
+  width: 100vw;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+/* Fading animation */
+
 </style>

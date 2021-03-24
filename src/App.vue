@@ -3,7 +3,12 @@
     <div class="nav">
       <div class="menu-mb">
         <span>spotzCar</span>
-        <i @click="activemb()" :class="mbicon"></i>
+        <i @click="activemb()" :class="mbicon" id="mbicon"></i>
+        <ul class="mndesk">
+          <router-link class="itemdesk" to="/">Inicio</router-link>
+          <router-link class="itemdesk" to="/about">Sobre</router-link>
+          <router-link class="itemdesk" to="/search">Buscar</router-link>
+        </ul>
       </div>
     </div>
     <div class="menuactive" :style="activemenu">
@@ -115,9 +120,32 @@ export default {
   z-index: 3;
   font-size: 1.2rem;
   font-weight: 300;
-  padding: .5rem;
-  
+  padding: .5rem; 
 }
-
-
+.mndesk{
+  display: none;
+  flex-direction: row;
+}
+.itemdesk{
+  font-size: 1.2rem;
+  color: white;
+  padding: 0 .7rem;
+  font-weight: bold;
+  list-style: none;
+  text-decoration: none;
+  padding-top: .5rem;
+}
+.itemdesk:hover{
+  color: rgba(223, 217, 217, 0.781);
+  cursor: pointer;
+}
+/*------------NavBar-MediaQuery--------------*/
+@media(min-width: 600px){
+  #mbicon{
+    display: none;
+  }
+  .mndesk{
+    display: flex;
+  }
+}
 </style>
