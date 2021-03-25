@@ -46,43 +46,43 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 }
 .home-carousel:after{
-    content: '\A';
-    z-index: 2;
-    position: absolute;
-    width: 100%; height:100%;
-    top:0; left:0;
-    background:rgba(0, 0, 0, 0.349);
-    opacity: 1;
+  content: '\A';
+  z-index: 2;
+  position: absolute;
+  width: 100%; height:100%;
+  top:0; left:0;
+  background:rgba(0, 0, 0, 0.349);
+  opacity: 1;
 }
 #title{
   position: absolute;
   z-index: 3 !important;
   color: white;
-  font-size: 1.4rem;
+  font-size: 2.5rem;
   letter-spacing: .1rem;
   text-align: start;
   font-weight: bold;
+  margin-bottom: 12rem;
 }
 .subtitle{
-  position: absolute;
   z-index: 3 !important;
   color: white;
-  font-size: .8rem;
+  font-size: 1.2rem;
   margin-top: 10rem;
   letter-spacing: .1rem;
-  text-align: center;
+  max-width: 37rem;
+  text-align: start !important;
   font-weight: 400;
 }
 .info-home{
-  width: 100vw;
+  width: 62vw;
   display: flex;
   height: 100vh;
-  justify-content: center;
-  align-content: center;
+  justify-content: start;
   align-items: center;
 }
 /* Fading animation */

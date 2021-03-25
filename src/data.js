@@ -9,8 +9,10 @@ const carros = [
     }
 ];
 
-export const Cars = () => {
+const Cars = (params) => {
   const MyCars  = carros;
   return MyCars
 }
+
+export default {Cars,Motos,};
 /*https://us-central1-spotz-prod.cloudfunctions.net/function-sell-my-car/announcements*/
