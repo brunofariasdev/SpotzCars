@@ -6,6 +6,7 @@
         <p class="subtitle">Ornare malesuada praesent aliquam varius mollis feugiat faucibus tristique ac aliquam, integer aenean commodo donec neque proin lacinia phasellus eget dui,<br> pulvinar auctor sapien nisl pretium curabitur eros donec per. </p>
       </div>
     </div>
+    
   </div>  
 </template>
 
