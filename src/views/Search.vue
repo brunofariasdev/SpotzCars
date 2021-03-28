@@ -93,7 +93,7 @@ export default {
             valPhone: false,
             cars: [],
             search: false,
-            activeForm: true
+            activeForm: false
         }
     },
     mounted() {
@@ -122,6 +122,18 @@ export default {
         },
         sendForm(){
           console.log(this.contactForm.name, this.contactForm.email, this.contactForm.phone, this.contactForm.cpf);
+          axios.post('https://us-central1-spotz-prod.cloudfunctions.net/function-sell-my-car/contacts', {
+            contact:{
+              name: this.contactForm.name,
+              cpf: this.contactForm.cpf,
+              email: this.contactForm.email,
+              phone: this.contactForm.phone
+            }
+          }).then(res => {
+            console.log(res);
+          }).catch(err => {
+            console.log(err);
+          });
         },
 
     },
@@ -187,7 +199,9 @@ export default {
     border-radius: .2rem;
     padding: 1rem 0 0 0 ;
 }
-
+.content-card{
+  width: 100%;
+}
 @media(max-width: 500px){
   .search-mb{
     align-items: center;
