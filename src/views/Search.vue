@@ -65,7 +65,7 @@
         </div>
       <div class="cards" v-else>
         <div class="card" v-for="cars in apiTotal" :key="cars.id">
-          <img src="../assets/images/fghc453d.jpg">
+          <img :src="getUrlImg(cars.image)">
           <span>Nome: {{cars.name}}</span>
           <span>Marca: {{cars.brand}}</span>
           <div class="price-km">
