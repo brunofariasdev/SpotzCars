@@ -1,13 +1,13 @@
 <template> 
   <div class="home">
-    <div class="home-carousel" :style="`background-image:url(${imgscarousel[`${img}`]})`">
-      <div class="info-home">
+    <transition name="show">
+        <img class="home-carousel" :src="`${imgscarousel[`${img}`]})`" :key="`${imgscarousel[`${img}`]})`" data-toggle="tooltip" data-placement="bottom" title="goTop" alt="">
+    </transition>
+     <div class="info-home">
         <h2 id="title">Encontre o carro ideal e <br> compre agora mesmo!</h2>
         <p class="subtitle">Ornare malesuada praesent aliquam varius mollis feugiat faucibus tristique ac aliquam, integer aenean commodo donec neque proin lacinia phasellus eget dui,<br> pulvinar auctor sapien nisl pretium curabitur eros donec per. </p>
       </div>
-    </div>
-    
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -16,8 +16,11 @@ export default {
   data(){
     return {
       imgscarousel:[
-        'https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80',
-        'https://revistacarro.com.br/wp-content/uploads/2019/09/Ferrari-F8-Spider_3-1024x614.jpg','https://carrosecarros.com.br/upload/noticias/imagens/bYNMbV6kdb.jpg','https://cdn.motor1.com/images/mgl/rv6v6/s1/volkswagen-golf-8-gti-clubsport-2021.jpg'
+        'https://quatrorodas.abril.com.br/wp-content/uploads/2017/01/qr-690-carro-tracker-02.jpg?quality=70&strip=all',
+        'https://quatrorodas.abril.com.br/wp-content/uploads/2020/03/chevrolet-tracker-premier-1.2-2021-1-e1597083614688.jpg?quality=70&strip=info',
+        'https://2.bp.blogspot.com/-Rrkzkf-39Rw/We8n4kf8xKI/AAAAAAAA_mM/ROYZtJAYazQrQTzdVnQQNdw1_U5ZV-mawCLcBGAs/s1600/Tracker-premier-4.jpg',
+        'https://www.moura.com.br/wp-content/uploads/2017/02/chevrolet-prisma-m48fd-1.jpg',
+        'https://quatrorodas.abril.com.br/wp-content/uploads/2020/04/fiat-strada-endurance-2020-5.jpg?quality=70&strip=info'
       ],
       img: 0, 
       cars: []
@@ -25,7 +28,7 @@ export default {
   },
   created(){
     setInterval(() => {
-      if(this.img < 3){
+      if(this.img < 4){
         this.img++;
       }else{
         this.img = 0;
@@ -39,9 +42,14 @@ export default {
 .home{
   height: 100vh;
   z-index: 2;
+  overflow: hidden !important;
 }
 .home-carousel{
   height: 100vh;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  width: 100vw;
   z-index: 2;
   background-size: cover;
   background-position: center;
@@ -50,14 +58,14 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.home-carousel:after{
-  content: '\A';
-  z-index: 2;
-  position: absolute;
-  width: 100%; height:100%;
-  top:0; left:0;
-  background:rgba(0, 0, 0, 0.349);
-  opacity: 1;
+@media(max-width: 500px) {
+  #title{
+    font-size: 1.6rem !important;
+  }
+  .subtitle{
+    margin-top: 6rem !important;
+    max-width: 20rem !important;
+  }
 }
 #title{
   position: absolute;
@@ -73,19 +81,30 @@ export default {
   z-index: 3 !important;
   color: white;
   font-size: 1.2rem;
-  margin-top: 10rem;
+  margin-top: 3rem;
   letter-spacing: .1rem;
-  max-width: 37rem;
+  max-width: 30rem;
   text-align: start !important;
   font-weight: 400;
 }
 .info-home{
-  width: 62vw;
-  display: flex;
+  width: 100%;
   height: 100vh;
-  justify-content: start;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
-/* Fading animation */
+/* Show animation */
+.show-enter-active,
+.show-leave-enter {
+  transform: translateX(0);
+  transition: all .3s linear;
+}
+.show-enter,
+.show-leave-to {
+  transform: translateX(100%);
+}
 
 </style>

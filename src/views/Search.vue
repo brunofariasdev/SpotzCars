@@ -167,21 +167,19 @@ export default {
       }
     },
   },
-
-
 }
 
 </script>
 <style scoped>
 .container{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: start;
-    flex-direction: row;
-    justify-content: center;
-    background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  justify-content: center;
+  background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
+  overflow: hidden;
 }
 .search-mb{
   display: none;
@@ -189,15 +187,15 @@ export default {
   margin-top:4rem;
 }
 .search{
-    background-color: white;
-    height: 93vh;
-    width: 19rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 4.2rem;
-    border-radius: .2rem;
-    padding: 1rem 0 0 0 ;
+  background-color: white;
+  height: 93vh;
+  width: 19rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4.2rem;
+  border-radius: .2rem;
+  padding: 1rem 0 0 0 ;
 }
 .content-card{
   width: 100%;
@@ -223,87 +221,86 @@ export default {
   flex-direction: row;
 }
 .input-search{
-    margin: .4rem;
-    color: rgb(80, 79, 79);
-    width: 80%;
+  margin: .4rem;
+  color: rgb(80, 79, 79);
+  width: 80%;
 }
 .button-search{
-    text-align: center;
-    height: 2.3rem;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 1rem;
-    border-radius: 1rem;
-    width: 10rem;
-    background: transparent linear-gradient(45deg,#f16e34,#9940ac) 0 0 no-repeat padding-box;
-    border: none;
-    cursor: pointer;
+  text-align: center;
+  height: 2.3rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1rem;
+  border-radius: 1rem;
+  width: 10rem;
+  background: transparent linear-gradient(45deg,#f16e34,#9940ac) 0 0 no-repeat padding-box;
+  border: none;
+  cursor: pointer;
 }
 .button-search:hover{
-    background: transparent linear-gradient(45deg,#db622e,#873599) 0 0 no-repeat padding-box;
-    font-size: 1.1rem;
+  background: transparent linear-gradient(45deg,#db622e,#873599) 0 0 no-repeat padding-box;
+  font-size: 1.1rem;
 }
 .cards{
-    width: 100%;
-    margin-left: .8rem;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    overflow-x: hidden;
-    overflow-y: scroll ;
-    max-height: 85vh;
-    margin-top: 4.2rem;
-    justify-content: center;
+  width: 100%;
+  margin-left: .8rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow-x: hidden;
+  overflow-y: scroll ;
+  max-height: 85vh;
+  margin-top: 4.2rem;
+  justify-content: center;
 }
 .card{
-    background-color: white;
-    width: 16rem;
-    border-radius: .4rem;
-    margin-bottom: .4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    flex-direction: column;
-    margin-left: .4rem;
-    height: 20rem;
-    box-shadow: rgba(158, 184, 209, 0.41) 0px 2px 9px 0px;;
+  background-color: white;
+  width: 16rem;
+  border-radius: .4rem;
+  margin-bottom: .4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-direction: column;
+  margin-left: .4rem;
+  height: 20rem;
+  box-shadow: rgba(158, 184, 209, 0.41) 0px 2px 9px 0px;;
 }
 .card img{
-    width: 100%;
-    height: 11rem;
-    border-radius: .4rem .4rem 0 0;
+  width: 100%;
+  height: 11rem;
+  border-radius: .4rem .4rem 0 0;
 }
 .card span{
-    padding: .3rem;
+  padding: .3rem;
 }
 .price-km{
-    padding: .3rem;
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    justify-content: space-between;
+  padding: .3rem;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
 }
-
 .price-km h2{
-    color: rgb(22, 21, 21);
-    font-size: 1rem;
+  color: rgb(22, 21, 21);
+  font-size: 1rem;
 }
 .price-km span{
-    font-size: .8rem;
-    color: rgb(158, 158, 158);
+  font-size: .8rem;
+  color: rgb(158, 158, 158);
 }
 .btn-contact{
-    border: none;
-    width: 100%;
-    height: 2.5rem;
-    color: white;
-    cursor: pointer;
-    font-weight: 500;
-    background: transparent linear-gradient(45deg,#65c86a,#17ac1e) 0 0 no-repeat padding-box;
+  border: none;
+  width: 100%;
+  height: 2.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  background: transparent linear-gradient(45deg,#65c86a,#17ac1e) 0 0 no-repeat padding-box;
 }
 .btn-contact:hover{
-    background: transparent linear-gradient(45deg,#2f9734,rgb(17, 134, 23)) 0 0 no-repeat padding-box;
+  background: transparent linear-gradient(45deg,#2f9734,rgb(17, 134, 23)) 0 0 no-repeat padding-box;
 }
 .form-contact{
   background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
