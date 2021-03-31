@@ -51,7 +51,7 @@
 
         <div class="cards" v-if="search">
             <div class="card" v-for="cars in apiSearch" :key="cars.id">
-                <img src="../assets/images/fghc453d.jpg">
+                <img :src="getCars(cars.image)">
                 <div class="content-card">
                   <span>Nome: {{cars.name}}</span>
                   <span>Marca: {{cars.brand}}</span>
@@ -65,7 +65,7 @@
         </div>
       <div class="cards" v-else>
         <div class="card" v-for="cars in apiTotal" :key="cars.id">
-          <img src="../assets/images/fghc453d.jpg">
+          <img :src="getUrlImg(cars.image)">
           <span>Nome: {{cars.name}}</span>
           <span>Marca: {{cars.brand}}</span>
           <div class="price-km">
@@ -170,30 +170,19 @@ export default {
 </script>
 <style scoped>
 .container{
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: start;
-  flex-direction: row;
-  justify-content: center;
-  background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
-  overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
+    overflow: hidden;
 }
 .search-mb{
   display: none;
   flex-direction: row;
   margin-top:4rem;
-}
-.search{
-  background-color: white;
-  height: 93vh;
-  width: 19rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4.2rem;
-  border-radius: .2rem;
-  padding: 1rem 0 0 0 ;
 }
 .content-card{
   width: 100%;

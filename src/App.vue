@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style>
+:root{
+  --orange: #FF4605;
+  --black: #222732;
+  --blue: #EFF3FA;
+  --grey: #DEE1E6; 
+  --black-contrast: #0f141e;
+}
 *{
   margin: 0;
   padding: 0;
