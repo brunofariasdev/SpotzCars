@@ -1,12 +1,16 @@
 <template> 
   <div class="home">
-    <div class="home-carousel" :style="`background-image:url(${imgscarousel[`${img}`]})`">
+    <transition name="fade">
+    <div class="home-carousel" :style="`background-image:url(${imgscarousel[`${img}`]})`" :key="`background-image:url(${imgscarousel[`${img}`]})`" data-toggle="tooltip" data-placement="bottom" title="goTop" alt="Background">
       <div class="info-home">
-        <h2 id="title">Encontre o carro ideal e <br> compre agora mesmo!</h2>
+        <h2 id="title">Encontre o <span>Carro</span> ideal e <br> compre agora mesmo!</h2>
         <p class="subtitle">Ornare malesuada praesent aliquam varius mollis feugiat faucibus tristique ac aliquam, integer aenean commodo donec neque proin lacinia phasellus eget dui,<br> pulvinar auctor sapien nisl pretium curabitur eros donec per. </p>
       </div>
     </div>
-    
+    </transition>
+    <footer>
+
+    </footer>
   </div>  
 </template>
 
@@ -16,8 +20,8 @@ export default {
   data(){
     return {
       imgscarousel:[
-        'https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80',
-        'https://revistacarro.com.br/wp-content/uploads/2019/09/Ferrari-F8-Spider_3-1024x614.jpg','https://carrosecarros.com.br/upload/noticias/imagens/bYNMbV6kdb.jpg','https://cdn.motor1.com/images/mgl/rv6v6/s1/volkswagen-golf-8-gti-clubsport-2021.jpg'
+        'https://demo.vehica.com/wp-content/uploads/2020/10/bg-1920-new.jpg','https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80',
+        'https://carrosecarros.com.br/upload/noticias/imagens/bYNMbV6kdb.jpg','https://cdn.motor1.com/images/mgl/rv6v6/s1/volkswagen-golf-8-gti-clubsport-2021.jpg','https://media2.autokopen.nl/afbeeldingen/volkswagen-golf-gti-tcr-295594-1920.jpg'
       ],
       img: 0, 
       cars: []
@@ -25,12 +29,12 @@ export default {
   },
   created(){
     setInterval(() => {
-      if(this.img < 3){
+      if(this.img < 4){
         this.img++;
       }else{
         this.img = 0;
       }
-    }, 4000)
+    },10000)
   } 
 };
 </script>
@@ -86,6 +90,30 @@ export default {
   justify-content: start;
   align-items: center;
 }
+.info-home span{
+  color: var(--orange);
+}
+@media(max-width: 550px){
+  #title{
+    font-size:1.6rem;
+  }
+  .subtitle{
+    margin-top: 8rem;
+  }
+}
+@media(max-width: 415px){
+  .subtitle{
+    margin-top: 17rem;
+  }
+}
 /* Fading animation */
-
+.fade-enter-active,
+.fade-leave-enter {
+    transform: translateX(0);
+    transition: all .3s linear;
+}
+.fade-enter,
+.fade-leave-to {
+    transform: translateX(100%);
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="nav">
-      <div class="menu-mb">
-        <span>spotzCar</span>
+      <div class="menu">
+        <span>spotzCar<i class="fas fa-car"></i></span>
         <i @click="activemb()" :class="mbicon" id="mbicon"></i>
         <ul class="mndesk">
           <router-link class="itemdesk" to="/">Inicio</router-link>
@@ -75,7 +75,7 @@ export default {
   background: transparent;
   z-index: 3;
 }
-.menu-mb{
+.menu{
   display: flex;
   background: transparent;
   position: fixed;
@@ -85,16 +85,18 @@ export default {
   width: 100vw;
   z-index: 3;
 }
-.menu-mb span{
+.menu span{
   color: white;
   font-weight: bold;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.3rem;
   z-index: 3;
+  cursor: pointer;
 }
-.menu-mb i{
-  font-size: 1.8rem;
-  color:white;  
+.menu span i{
+  font-size: 1.4em;
+  padding: .3rem;
+  color: var(--orange);  
   z-index: 3;
 }
 .menuactive{
@@ -144,9 +146,13 @@ export default {
   padding-top: .5rem;
 }
 .itemdesk:hover{
-  color: rgba(223, 217, 217, 0.781);
+  color: var(--orange-hover);
   cursor: pointer;
 }
+#mbicon{
+  font-size: 1.8rem;
+  color: white;
+  }
 /*------------NavBar-MediaQuery--------------*/
 @media(min-width: 600px){
   #mbicon{
