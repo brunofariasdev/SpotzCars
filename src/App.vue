@@ -47,6 +47,7 @@ export default {
 <style>
 :root{
   --orange: #FF4605;
+  --orange-hover: #ff6831;
   --black: #222732;
   --blue: #EFF3FA;
   --grey: #DEE1E6; 

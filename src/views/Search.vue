@@ -1,57 +1,36 @@
 <template>
     <main class="container">
-      <form class="form-contact"  v-if="activeForm" required>
+      <form class="form-contact" @submit.prevent="sendForm()"  v-if="activeForm" required>
         <input type="text" placeholder="Nome" v-model="contactForm.name" required>
         <input type="text" pattern="^\d{2}\d{9}$" placeholder="CPF" v-model="contactForm.cpf" required>
-        <span v-if="valCpf" >Cpf Invalido!</span>
         <input type="email" placeholder="Email"  title="Email Incorreto" v-model="contactForm.email" required>
         <input type="tel" pattern="^\d{2}\d{9}$" placeholder="Celular" v-model="contactForm.phone" required>
-        <span v-if="valPhone">Telefone Invalido!</span>
+        <span v-if="form_sucess" class="form-sucess">Formulário de Contato ENVIADO!</span>
+        <span v-if="form_error" class="form-error">Erro ao Enviar Formulário!</span>
         <div class="buttons">
-          <button class="btn-sucess" type="submit" @click="sendForm()">Enviar</button>
+          <button class="btn-sucess" type="submit">Enviar</button>
           <button class="btn-cancel"  @click="activeForm = false">Cancelar</button>
         </div>
       </form>
         <div class="search">
             <div class="price">
-                <span>Preço</span>
                 <div class="filter-price">
                     <input v-model="minPrice" type="text" class="input-search" placeholder="Preço Mínimo">
                     <input v-model="maxPrice" type="text" class="input-search" placeholder="Preço Máximo">
                 </div>
             </div>
             <div class="km">
-                <span>Quilometragem</span>
                 <div class="filter-km">
                     <input v-model="minKm"  type="text" class="input-search" placeholder="KM Mínimo">
                     <input v-model="maxKm"  type="text" class="input-search" placeholder="KM Máximo">
                 </div>
             </div>
-        <button class="button-search" @click="getCars()">Buscar</button>
-        </div>
-        <div class="search-mb">
-          <div class="content-search">
-            <div class="price">
-              <span>Preço</span>
-              <div class="filter-price">
-                <input v-model="minPrice" type="text" class="input-search" placeholder="Preço Mínimo">
-                <input v-model="maxPrice" type="text" class="input-search" placeholder="Preço Máximo">
-              </div>
-            </div>
-            <div class="km">
-              <span>Quilometragem</span>
-              <div class="filter-km">
-                <input v-model="minKm"  type="text" class="input-search" placeholder="KM Mínimo">
-                <input v-model="maxKm"  type="text" class="input-search" placeholder="KM Máximo">
-              </div>
-            </div>
-          </div>
-          <button class="button-search" @click="getCars()">Buscar</button>
+        <button class="button-search" @click="getCars()"><i class="fas fa-search"></i></button>
         </div>
 
         <div class="cards" v-if="search">
             <div class="card" v-for="cars in apiSearch" :key="cars.id">
-                <img :src="getCars(cars.image)">
+                <img :src="getUrlImg(cars.image)">
                 <div class="content-card">
                   <span>Nome: {{cars.name}}</span>
                   <span>Marca: {{cars.brand}}</span>
@@ -89,8 +68,8 @@ export default {
             minKm: '',
             maxPrice: '',
             minPrice: '',
-            valCpf: false,
-            valPhone: false,
+            form_sucess: false,
+            form_error: false,
             cars: [],
             search: false,
             activeForm: false
@@ -116,34 +95,41 @@ export default {
                 console.log(searchUrl);
               })
         },
-        getInContact(e){
+        getInContact(){
           this.activeForm = true;
-          console.log(e.name, e.id, e.price, e.brand);
         },
         sendForm(){
-          console.log(this.contactForm.name, this.contactForm.email, this.contactForm.phone, this.contactForm.cpf);
-          axios.post('https://us-central1-spotz-prod.cloudfunctions.net/function-sell-my-car/contacts', {
-            contact:{
-              name: this.contactForm.name,
-              cpf: this.contactForm.cpf,
-              email: this.contactForm.email,
-              phone: this.contactForm.phone
+          let bodyPost = {
+            "announcement_id": "string",
+            "contact": {
+              "name": this.contactForm.name,
+              "cpf": this.contactForm.cpf,
+              "email": this.contactForm.email,
+              "phone": this.contactForm.phone
             }
+          }
+          axios.post('https://us-central1-spotz-prod.cloudfunctions.net/function-sell-my-car/contact', {
+            bodyPost
           }).then(res => {
             console.log(res);
+            this.form_sucess  = true;
+            setTimeout(() => {this.form_sucess = false},3000)
+            setTimeout(() => {this.activeForm = false},5000)
           }).catch(err => {
             console.log(err);
+            this.form_error = true;
+            setTimeout(() => {this.form_error = false},3000)
           });
         },
     },
   computed: {
-      MaxKm: function(){
-          if(this.maxKm !== ''){
-            return '&maxKm='+this.maxKm;
-          }else{
-            return ''
-          }
-      },
+    MaxKm: function(){
+      if(this.maxKm !== ''){
+      return '&maxKm='+this.maxKm;
+      }else{
+        return '';
+      }
+    },
     MinKm: function(){
       if(this.minKm !== ''){
         return '&minKm='+this.minKm;
@@ -170,14 +156,14 @@ export default {
 </script>
 <style scoped>
 .container{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: start;
-    flex-direction: row;
-    justify-content: center;
-    background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('https://demo.vehica.com/wp-content/uploads/2020/10/bg-1920-new.jpg');
+  overflow: hidden;
 }
 .search-mb{
   display: none;
@@ -187,20 +173,48 @@ export default {
 .content-card{
   width: 100%;
 }
+.search{
+  margin: 4rem 0rem 2rem 0;
+  border-radius: 2rem;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 70vw;
+  padding: .3rem;
+  box-shadow: 0px 5px 0px 0px #a1a1a1;
+}
 @media(max-width: 500px){
   .search-mb{
     align-items: center;
     display: flex;
     flex-direction: column;
   }
-  .search{
-    display: none;
-  }
   .container{
     flex-direction: column;
   }
   .cards{
     margin: 0 !important;
+  }
+}
+@media(max-width: 920px){
+  .search{
+    justify-content: center;
+    width: 25rem;
+    flex-direction: column;
+  }
+  .price, .km{
+    width: 20rem;
+    margin: 0;
+    padding: 0;
+  }
+
+}
+@media(max-width: 420px){
+  .search{
+    width: 21rem;
+    height: 10rem;
+    border-radius: 1.2rem;
   }
 }
 .content-search{
@@ -210,23 +224,23 @@ export default {
 .input-search{
   margin: .4rem;
   color: rgb(80, 79, 79);
-  width: 80%;
+  width: 40%;
 }
 .button-search{
   text-align: center;
-  height: 2.3rem;
-  color: white;
+  height: 3rem;
+  color: rgb(255, 255, 255);
   font-size: 1rem;
   font-weight: bold;
-  margin: 1rem;
+  margin: .7rem;
   border-radius: 1rem;
-  width: 10rem;
-  background: transparent linear-gradient(45deg,#f16e34,#9940ac) 0 0 no-repeat padding-box;
+  width: 5rem;
+  background: var(--orange) !important;
   border: none;
   cursor: pointer;
 }
 .button-search:hover{
-  background: transparent linear-gradient(45deg,#db622e,#873599) 0 0 no-repeat padding-box;
+  background-color: var(--orange) !important;
   font-size: 1.1rem;
 }
 .cards{
@@ -237,12 +251,12 @@ export default {
   flex-direction: row;
   overflow-x: hidden;
   overflow-y: scroll ;
+  margin-bottom: .3rem;
   max-height: 85vh;
-  margin-top: 4.2rem;
   justify-content: center;
 }
 .card{
-  background-color: white;
+  background-color: var(--black-contrast);
   width: 16rem;
   border-radius: .4rem;
   margin-bottom: .4rem;
@@ -261,6 +275,7 @@ export default {
 }
 .card span{
   padding: .3rem;
+  color: var(--blue);
 }
 .price-km{
   padding: .3rem;
@@ -270,7 +285,7 @@ export default {
   justify-content: space-between;
 }
 .price-km h2{
-  color: rgb(22, 21, 21);
+  color: var(--orange);
   font-size: 1rem;
 }
 .price-km span{
@@ -284,13 +299,13 @@ export default {
   color: white;
   cursor: pointer;
   font-weight: 500;
-  background: transparent linear-gradient(45deg,#65c86a,#17ac1e) 0 0 no-repeat padding-box;
+  background: var(--orange);
 }
 .btn-contact:hover{
-  background: transparent linear-gradient(45deg,#2f9734,rgb(17, 134, 23)) 0 0 no-repeat padding-box;
+  background: var(--orange-hover);
 }
 .form-contact{
-  background: transparent linear-gradient(45deg,#e2835a,#af69be) 0 0 no-repeat padding-box;
+  background: var(--black);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -305,6 +320,10 @@ export default {
   padding: .5rem;
   margin: .5rem;
 }
+.form-contact input{
+  width: 55vw;
+  height: 2rem;
+}
 .btn-sucess{
   background-color: #2f9734;
   color: white;
@@ -313,6 +332,10 @@ export default {
   border-radius: .3rem;
   margin: .7rem;
   cursor: pointer;
+  width: 8rem;
+}
+.btn-sucess:hover,.btn-cancel:hover{
+  opacity: .8;
 }
 .btn-cancel{
   background-color: red;
@@ -322,5 +345,16 @@ export default {
   border-radius: .3rem;
   margin: .7rem;
   cursor: pointer;
+  width: 8rem;
+}
+.form-sucess{
+  color: #2f9734;
+  padding: .2rem;
+  font-size: 1.1rem;
+}
+.form-error{
+  color: #cf0f0f;
+  padding: .2rem;
+  font-size: 1.1rem;
 }
 </style>
